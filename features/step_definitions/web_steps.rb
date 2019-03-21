@@ -81,6 +81,13 @@ When /^(?:|I )follow "([^"]*)"$/ do |link|
   click_link(link)
 end
 
+When /^(?:|I )follow "([^"]*)" "([^"]*)"$/ do |category_name, action|
+  selector = Category.where(name: category_name).first.id
+  path = "/admin/categories/#{action}/#{selector}"
+  visit path
+end
+
+
 When /^(?:|I )fill in "([^"]*)" with "([^"]*)"$/ do |field, value|
   fill_in(field, :with => value)
 end
